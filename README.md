@@ -198,6 +198,15 @@ We conducted a permutation test by randomly shuffling the minutes column while k
 We used a significance level of 0.05 to determine statistical significance.
 
 <iframe
+  src="Assets/min-dist.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+We ran permutation by shuffling the the `minutes` column for 1000 times to collect 1000 simulating absolute mean differences in the two distributions as described in the test statistic.
+
+<iframe
   src="Assets/emp-dist1.html"
   width="800"
   height="600"
