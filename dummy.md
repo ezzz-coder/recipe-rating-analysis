@@ -1,4 +1,4 @@
-## Univariate data anlysis
+### Univariate data anlysis
 <iframe
   src="assets/n-ingredients-dist.html"
   width="800"
