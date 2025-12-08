@@ -38,8 +38,16 @@ Each row of this dataset represents a user review to a given recipe. The data in
 
 To analyze the relationship between number of ingredients and rating, we need to make two new columns: `averageRating` column, which is computed by taking the average of all ratings of a given recipe, and `isFewIngredients` column, which is computed by comparing `n_ingredients` column with the median number of ingredients used. More Details will be given in the data cleaning section.<br>
 
+## Data Cleaning and Exploratory Data Analysis ##
 
+### Univariate data anlysis ###
+<iframe
+  src="assets/n-ingredients-dist.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
-
+The distribution of n_ingredients is right-skewed, with a peak around 8–9 ingredients at around 8500 counts. Most recipes have fewer than 15 ingredients, and the tail extends to about 35, indicating most recipes use a moderate number of ingredients with a few using many more.
 
 
