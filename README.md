@@ -289,6 +289,12 @@ Since the **p-value** is **0.815**, we **fail to reject** the null hypothesis. W
 
 ## Framing a Prediction Problem ##
 
+Our problem is to predict the average rating of a recipe, which would be a regression problem since the ratings are continuous in the range [1.0, 5.0]. The response variable is the average rating of a recipe, aggregated across all user interactions. We chose to predict rating because it directly measures user satisfaction and recipe quality, and it's interesting to see which features (e.g. number of ingredients, nutrition, etc.) would impact how well users like a recipe.
+
+The primary evaluation metric is Root Mean Squared Error (RMSE). Compared to other metrics like MSE, RMSE makes the error more interpretable as it's in the same unit as what we're trying to predict, which is the main reason we chose to use it. 
+
+The information we have prior making our prediction are all the columns in the `recipes` dataset (listed at the result of the data cleaning section) except the `rating` column as that's what we're trying to predict. These features capture nutritional profile, recipe complexity, and categorization that may influence ratings, enabling predictions for new recipes based solely on recipe characteristics known before any ratings exist.
+
 ## Baseline Model ##
 
 ## Final Model ##
