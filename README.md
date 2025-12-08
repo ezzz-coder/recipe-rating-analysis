@@ -45,25 +45,25 @@ To analyze the relationship between number of ingredients and rating, we need to
 
 2. **Second, check datatypes of all columns in `df`**. This will help us on further data cleaning such as converting datatype, filling null values, etc.<br>
 
-| Column | Data Type |
-|--------|-----------|
-| `name` | object |
-| `id` | int64 |
-| `minutes` | int64 |
-| `contributor_id` | int64 |
-| `submitted` | object |
-| `tags` | object |
-| `nutrition` | object |
-| `n_steps` | int64 |
-| `steps` | object |
-| `description` | object |
-| `ingredients` | object |
-| `n_ingredients` | int64 |
-| `user_id` | float64 |
-| `recipe_id` | float64 |
-| `date` | object |
-| `rating` | float64 |
-| `review` | object |
+    | Column | Data Type |
+    |--------|-----------|
+    | `name` | object |
+    | `id` | int64 |
+    | `minutes` | int64 |
+    | `contributor_id` | int64 |
+    | `submitted` | object |
+    | `tags` | object |
+    | `nutrition` | object |
+    | `n_steps` | int64 |
+    | `steps` | object |
+    | `description` | object |
+    | `ingredients` | object |
+    | `n_ingredients` | int64 |
+    | `user_id` | float64 |
+    | `recipe_id` | float64 |
+    | `date` | object |
+    | `rating` | float64 |
+    | `review` | object |
 
 3. **Third, fill all `rating` of 0 with `np.nan`**. The min rating should be 1 and the max rating should be 5. A rating of 0 indicates the user 'did not vote', which shouldn't be included during mean calculations. Since null values will be ingonred during pandas operations, we would like to replace all 0 with `np.nan`.<br>
 
@@ -101,6 +101,7 @@ The resulting `recipes` dataframe has 83782 rows and 21 columns, with following 
 | `isFewIngredients` | bool |
 
 Here are the first 5 rows of cleaned `recipes` dataframe with question related columns:<br>
+
 | name                                 |     id |   rating |   minutes |   n_ingredients | isFewIngredients   |
 |:-------------------------------------|-------:|---------:|----------:|----------------:|:-------------------|
 | 1 brownies in the world    best ever | 333281 |        4 |        40 |               9 | True               |
