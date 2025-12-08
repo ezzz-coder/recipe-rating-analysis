@@ -297,6 +297,10 @@ The information we have prior making our prediction are all the columns in the `
 
 ## Baseline Model ##
 
+For the baseline model, we used a linear regression model with three features, consisting of two quantitative features `calories` and `protein` and one nominal feature `isLong`. `calories` and `protein` come from the `recipes` dataframe and are standardized with `StandardScaler`. The `isLong` feature is created using the `minutes` column in `recipes`, where recipes requiring more than 200 minutes (a little more than the mean) are true for `isLong` and false otherwise. `isLong` is one-hot encoded with drop='first' (one binary column). 
+
+The model is trained on 80% of the data with a 20% test split (random_state=42), with an RMSE of 0.6357. The model is a simple baseline, and the low feature count (3) likely limits predictive power. So, we wouldn't consider the current model as 'good', but it serves as a good starting point for comparison with more sophisticated models that include additional engineered features.
+
 ## Final Model ##
 
 ## Fairness Analysis ##
