@@ -11,4 +11,17 @@ One aspect of a recipe that may influence user perception is the number of ingre
 
 To investigate this question, we analyze two datasets containing recipes and user ratings collected from [Food.com](https://www.food.com) since 2008. These datasets were originally curated for recommender system research in [Generating Personalized Recipes from Historical User Preferences](https://cseweb.ucsd.edu/~jmcauley/pdfs/emnlp19c.pdf) by Majumder et al., and they provide rich information on recipe attributes and user feedback. Using this data, we examine the relationship between a recipe’s average rating and its number of ingredients to better understand how preparation complexity aligns with user satisfaction.<br>
 
+The first dataset, `Raw_recipes.csv`, has 83782 rows and 10 columns, recording the following information:<br>
+| Column | Description |
+|-------|------------|
+| `name` | Recipe name |
+| `id` | Recipe ID |
+| `minutes` | Minutes to prepare recipe |
+| `contributor_id` | User ID who submitted this recipe |
+| `submitted` | Date recipe was submitted |
+| `tags` | Food.com tags for recipe |
+| `nutrition` | Nutrition information in the form [calories (#), total fat (PDV), sugar (PDV), sodium (PDV), protein (PDV), saturated fat (PDV), carbohydrates (PDV)]; PDV stands for "percentage of daily value" |
+| `n_steps` | Number of steps in recipe |
+| `steps` | Text for recipe steps, in order |
+| `description` | User-provided description |
 
