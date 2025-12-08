@@ -1,4 +1,4 @@
-# Recipe Rating Analysis
+# Investigation on the Relationship Between Number Of Ingredients and Rating of Recipes
 Final project for DSC80 at UCSD by Edward and Samson<br>
 
 ## Overview ##
@@ -38,9 +38,32 @@ The second dataset, ``Raw_interactions.csv`, contains 731927 rows and 5 columns,
 
 Each row of this dataset represents a user review to a given recipe. The data includes multiple reviews from different user to a speific recipe, resulting in the large number of rows.<br>
 
-To analyze the relationship between number of ingredients and rating, we need to make two new columns: `averageRating` column, which is computed by taking the average of all ratings of a given recipe, and `isFewIngredients` column, which is computed by comparing `n_ingredients` column with the median number of ingredients used. More Details will be given in the data cleaning section.<br>
+To analyze the relationship between number of ingredients and rating, we need to make two new columns: `rating` column, which is updated by taking the average of all ratings of a given recipe after dataframe merge, and `isFewIngredients` column, which is computed by comparing `n_ingredients` column with the median number of ingredients used. More Details will be given in the data cleaning section.<br>
 
 ## Data Cleaning and Exploratory Data Analysis ##
+1. First, left merge `Raw_recipes` and `Raw_interactions`, left on `id` and right on `recipe_id`, and then save it into dataframe called `df`. This will make sure we maintain all the recipes we have and create extra rows for those recipes with multiple reviews.<br>
+
+2. Second, check datatypes of all columns in `df`. This will help us on further data cleaning such as converting datatype, filling null values, etc.<br>
+
+| Column | Data Type |
+|--------|-----------|
+| `name` | object |
+| `id` | int64 |
+| `minutes` | int64 |
+| `contributor_id` | int64 |
+| `submitted` | object |
+| `tags` | object |
+| `nutrition` | object |
+| `n_steps` | int64 |
+| `steps` | object |
+| `description` | object |
+| `ingredients` | object |
+| `n_ingredients` | int64 |
+| `user_id` | float64 |
+| `recipe_id` | float64 |
+| `date` | object |
+| `rating` | float64 |
+| `review` | object |
 
 ### Univariate data anlysis ###
 <iframe
