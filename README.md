@@ -171,3 +171,27 @@ Recipes with fewer ingredients (1–15) show wider rating distributions with med
 
 Mean ratings stay consistently high (mostly 4.6–4.9) regardless of ingredient count, though the very highest means appear at the upper end (≈28–33 ingredients). Minimum ratings increase for higher ingredient counts, indicating that simpler recipes show more variability and occasionally poorer outcomes.
 
+## Assessment of Missingness ##
+In the cleaned dataset `recipes`, there are three columns with missing values: `name`, `description`, and `rating`. We will assess the missingness on the dataframe with the following analysis: <br>
+
+### NMAR Analysis ###
+The missingness in the `description` column is best characterized as Not Missing At Random (NMAR). A recipe description is optional and entirely user-provided, meaning whether a description is included depends on the contributor’s deliberate choice rather than on a value observed elsewhere in the dataset. For example, contributors may omit descriptions when they believe the recipe is self-explanatory already. <br>
+
+### Missingness Dependency
+**Number of Minutes and Rating** <br>
+To further investigate the missingness mechanism of the rating column, we examined whether the probability of a missing rating depends on the recipe’s preparation time, measured by the minutes column.<br>
+
+**Null Hypothesis:** <br>
+The missingness of ratings does not depend on the number of minutes required to prepare the recipe.<br>
+
+**Alternate Hypothesis:** <br>
+The missingness of ratings does depend on the number of minutes required to prepare the recipe.<br>
+
+**Test Statistic:** <br>
+We used the absolute difference between the mean number of minutes for recipes with observed ratings and the mean number of minutes for recipes with missing ratings. This statistic measures the magnitude of the difference in preparation time between the two groups regardless of direction**.
+
+**Method:** <br>
+We conducted a permutation test by randomly shuffling the minutes column while keeping the missingness pattern of rating fixed. For each permutation, we recomputed the test statistic to generate an empirical distribution under the null hypothesis. The p-value was calculated as the proportion of permutation statistics greater than or equal to the observed test statistic.
+
+**Significance Level:** <br>
+We used a significance level of 0.05 to determine statistical significance.
