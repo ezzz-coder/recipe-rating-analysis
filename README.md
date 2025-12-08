@@ -203,4 +203,6 @@ We used a significance level of 0.05 to determine statistical significance.
   frameborder="0"
 ></iframe>
 
+The **observed statistic** of **117.342** is indicated by the red vertical dotted line in the graph. The **p_value** we found after performing the permutation test is **0.034**, which is smaller than the significant level of **0.05**. Therefore, we **reject the null hypothesis**. The missingness of ratings does depend on the number of minutes required to prepare the recipe.<br>
+
 
