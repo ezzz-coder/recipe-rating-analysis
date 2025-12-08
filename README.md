@@ -33,7 +33,12 @@ The second dataset, ``Raw_interactions.csv`, contains 731927 rows and 5 columns,
 | `date` | Date of interaction |
 | `rating` | Rating given |
 | `review` | Review text |
+
 Each row of this dataset represents a user review to a given recipe. The data includes multiple reviews from different user to a speific recipe, resulting in the large number of rows.<br>
+
+To analyze the relationship between number of ingredients and rating, we need to make two new columns: `averageRating` column, which is computed by taking the average of all ratings of a given recipe, and `isFewIngredients` column, which is computed by comparing `n_ingredients` column with the median number of ingredients used. More Details will be given in the data cleaning section.<br>
+
+
 
 
 
