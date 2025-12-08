@@ -277,5 +277,12 @@ To run the test, we first divided the recipes into two groups: those with few in
 
 We then randomly shuffled the isFewIngredients labels 1,000 times while keeping the ratings fixed, recalculating the test statistic for each permutation to generate a null distribution. Using this distribution, we obtained a **p-value** of **0.815**.
 
+<iframe
+  src="Assets/perm-test.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 ### Conclusion ###
 Since the **p-value** is **0.815**, we **fail to reject** the null hypothesis. We do not have enough information to conclude that people rate recipes with many ingredients higher than recipes with few ingredients.<br>
