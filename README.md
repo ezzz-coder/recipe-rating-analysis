@@ -286,3 +286,28 @@ We then randomly shuffled the isFewIngredients labels 1,000 times while keeping 
 
 ### Conclusion ###
 Since the **p-value** is **0.815**, we **fail to reject** the null hypothesis. We do not have enough information to conclude that people rate recipes with many ingredients higher than recipes with few ingredients.<br>
+
+## Framing a Prediction Problem ##
+
+## Baseline Model ##
+
+## Final Model ##
+
+## Fairness Analysis ##
+For our fairness analysis, we examined whether our model performs differently for recipes with few ingredients versus those with many ingredients. We use the same column `isFewIngredients` as in previous sections.<br>
+
+We evaluated the fairness of the model using error parity, specifically by comparing the **Root Mean Squared Error (RMSE)** across the two groups. RMSE was chosen because it penalizes larger prediction errors more heavily, making it well-suited for assessing whether the model makes systematically larger mistakes for one group than the other. A model that exhibits similar RMSE values across groups can be considered more equitable in terms of predictive accuracy. <br>
+
+**Null Hypothesis:** <br>
+Our model is fair. The RMSE for recipes with few ingredients and recipes with many ingredients is approximately the same, and any observed difference is due to random chance. <br>
+
+**Alternative Hypothesis:** <br>
+Our model is unfair. The RMSE for recipes with few ingredients differs from the RMSE for recipes with many ingredients. <br>
+
+**Test Statistic:** <br>
+The absolute difference in RMSE between the two groups (few ingredients vs. many ingredients). <br>
+
+**Significance Level:** <br>
+0.05<br>
+
+
