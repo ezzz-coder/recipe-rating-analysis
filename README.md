@@ -310,4 +310,14 @@ The absolute difference in RMSE between the two groups (few ingredients vs. many
 **Significance Level:** <br>
 0.05<br>
 
+<iframe
+  src="Assets/fair-test.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
+Again, we run the pertutation test by shuffling 1000 times. The **obsreved test statistic** is **0.023**. Using this null distribution, we calculated the p-value as the proportion of permuted test statistics that were greater than or equal to the observed test statistic. The resulting **p-value** was **0.159**.<br>
+
+**Conclusion:** <br>
+At a significance level of 0.05, we fail to reject the null hypothesis. This indicates that there is insufficient evidence to conclude that the model’s prediction error differs between recipes with few ingredients and those with many ingredients. As a result, the model does not appear to exhibit unfairness with respect to the number of ingredients based on RMSE parity.<br>
