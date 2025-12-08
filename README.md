@@ -250,4 +250,32 @@ We ran permutation by shuffling the the `minutes` column for 1000 times to colle
   frameborder="0"
 ></iframe>
 
-The **observed statistic** of **0.351** is indicated by the red vertical dotted line in the graph. The **p_value** we found after performing the permutation test is **0.464**, which is much bigger than the significant level of **0.05**. Therefore, we **fail to reject the null hypothesis**. The missingness of ratings does not depend on the carbohydrates of the recipe.<br>
+The **observed statistic** of **0.351** is indicated by the red vertical dotted line in the graph. The **p_value** we found after performing the permutation test is **0.464**, which is much bigger than the significant level of **0.05**. Therefore, we **fail to reject the null hypothesis**. We do not have eough information to conclude that the missingness of ratings depends on the carbohydrates of the recipe.<br>
+
+## Hypothesis Test / Permutation Test ##
+As discussed earlier, we are interested in understanding whether the number of ingredients in a recipe influences how users rate it. In particular, we want to examine whether recipes with fewer ingredients are rated differently compared to those with more ingredients. We define recipes with few ingredients as those whose number of ingredients is less than or equal to the median number of ingredients across all recipes. This classification is represented by the boolean variable isFewIngredients. <br>
+
+To investigate this question, we conducted a permutation test with the following hypotheses, test statistic, and significance level.<br>
+
+**Null Hypothesis:** <br>
+People rate recipes with few ingredients and recipes with many ingredients on the same scale. <br>
+
+**Alternative Hypothesis:** <br>
+People rate recipes with many ingredients higher than recipes with few ingredients. <br>
+
+**Test Statistic:** <br>
+The difference in mean ratings between recipes with many ingredients and recipes with few ingredients (mean rating of non-few-ingredient recipes minus mean rating of few-ingredient recipes). <br>
+
+**Significance Level:** <br>
+0.05 <br>
+
+We chose to use a permutation test because we do not assume any prior knowledge about the underlying population distribution of recipe ratings. The permutation test allows us to assess whether the observed difference in mean ratings is consistent with the ratings being randomly assigned across recipe types. In other words, it helps determine whether the two groups of ratings could have come from the same population.<br>
+
+Additionally, we used the difference in means rather than the absolute difference because we have a directional hypothesis: we are specifically testing whether recipes with many ingredients receive higher ratings than those with fewer ingredients. We assumed that people would rate recipes with more ingredients a higher score becuase they are tend to be more falvorized.<br>
+
+To run the test, we first divided the recipes into two groups: those with few ingredients and those with many ingredients using `isFewIngredients` column. The **observed test statistic**, calculated as the difference between the mean of many ingredients group and mean of few ingredietns group, was **-0.004**.
+
+We then randomly shuffled the isFewIngredients labels 1,000 times while keeping the ratings fixed, recalculating the test statistic for each permutation to generate a null distribution. Using this distribution, we obtained a **p-value** of **0.815**.
+
+### Conclusion ###
+Since the **p-value** is **0.815**, we **fail to reject** the null hypothesis. We do not have enough information to conclude that people rate recipes with many ingredients higher than recipes with few ingredients.<br>
