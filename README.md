@@ -11,7 +11,7 @@ One aspect of a recipe that may influence user perception is the number of ingre
 
 To investigate this question, we analyze two datasets containing recipes and user ratings collected from [Food.com](https://www.food.com) since 2008. These datasets were originally curated for recommender system research in [Generating Personalized Recipes from Historical User Preferences](https://cseweb.ucsd.edu/~jmcauley/pdfs/emnlp19c.pdf) by Majumder et al., and they provide rich information on recipe attributes and user feedback. Using this data, we examine the relationship between a recipe’s average rating and its number of ingredients to better understand how preparation complexity aligns with user satisfaction.<br>
 
-The first dataset, `Raw_recipes.csv`, contains 83782 rows and 10 columns, recording the following information: <br>
+The first dataset, `Raw_recipes.csv` (save into `recipes` dataframe), contains 83782 rows and 10 columns, recording the following information: <br>
 
 | Column | Description |
 |-------|------------|
@@ -26,7 +26,7 @@ The first dataset, `Raw_recipes.csv`, contains 83782 rows and 10 columns, record
 | `steps` | Text for recipe steps, in order |
 | `description` | User-provided description |
 
-The second dataset, ``Raw_interactions.csv`, contains 731927 rows and 5 columns, recording the following information: <br>
+The second dataset, `Raw_interactions.csv` (save into `interactions` dataframe), contains 731927 rows and 5 columns, recording the following information: <br>
 
 | Column | Description |
 |--------|-------------|
@@ -41,9 +41,43 @@ Each row of this dataset represents a user review to a given recipe. The data in
 To analyze the relationship between number of ingredients and rating, we need to make two new columns: `rating` column, which is updated by taking the average of all ratings of a given recipe after dataframe merge, and `isFewIngredients` column, which is computed by comparing `n_ingredients` column with the median number of ingredients used. More Details will be given in the data cleaning section.<br>
 
 ## Data Cleaning and Exploratory Data Analysis ##
-1. First, left merge `Raw_recipes` and `Raw_interactions`, left on `id` and right on `recipe_id`, and then save it into dataframe called `df`. This will make sure we maintain all the recipes we have and create extra rows for those recipes with multiple reviews.<br>
+1. **First, left merge `recipes` and `interactions`**: left on `id` and right on `recipe_id`, and then save it into dataframe called `df`. This will make sure we maintain all the recipes we have and create extra rows for those recipes with multiple reviews.<br>
 
-2. Second, check datatypes of all columns in `df`. This will help us on further data cleaning such as converting datatype, filling null values, etc.<br>
+2. **Second, check datatypes of all columns in `df`**. This will help us on further data cleaning such as converting datatype, filling null values, etc.<br>
+
+-
+  | Column | Data Type |
+  |--------|-----------|
+  | `name` | object |
+  | `id` | int64 |
+  | `minutes` | int64 |
+  | `contributor_id` | int64 |
+  | `submitted` | object |
+  | `tags` | object |
+  | `nutrition` | object |
+  | `n_steps` | int64 |
+  | `steps` | object |
+  | `description` | object |
+  | `ingredients` | object |
+  | `n_ingredients` | int64 |
+  | `user_id` | float64 |
+  | `recipe_id` | float64 |
+  | `date` | object |
+  | `rating` | float64 |
+  | `review` | object |
+
+3. **Third, fill all `rating` of 0 with `np.nan`**. The min rating should be 1 and the max rating should be 5. A rating of 0 indicates the user 'did not vote', which shouldn't be included during mean calculations. Since null values will be ingonred during pandas operations, we would like to replace all 0 with `np.nan`.<br>
+
+4. **Compute average rating per recipe and add it back to the `recipes` dataframe**. As stated before, the merged `df` dataframe contains multiple row with different rating for the same recipe. By taking the average of all rating on the same recipe, we will have better understanding on the rating of a given recipe. We achieved this through grouping recipe by their id and apply the aggregation mean function on the `rating` column, then merge it into `recipes` dataframe. <br>
+
+5. **Split nutrition column into indiviudal columns of floats**. The original `nutrition` column stores multiple nutritional attributes as a single string containing comma-separated values enclosed in brackets. Each entry corresponds to a different nutritional metric, including calories, total fat, sugar, sodium, protein, saturated fat, and carbohydrates. Because these values are stored as strings, they cannot be directly used for numerical analysis or modeling.<br>
+
+To address this, we extracted each nutritional component by parsing the string, removing the surrounding brackets, and splitting the values by commas. Each component was then converted into a floating-point number and assigned to its own column. This transformation allows the nutritional information to be analyzed individually and enables more meaningful comparisons and statistical analysis across recipes.<br>
+
+6. **Add `isFewIngredients` column to `recipes`**. To better analyze how recipe simplicity relates to user ratings, we created a binary indicator that classifies recipes based on their number of ingredients. We computed the median value of the n_ingredients column and used it as a threshold to distinguish between recipes with relatively few ingredients and those with many ingredients.In the `isFewIngredients` column, a value of `True` indicates that a recipe has a number of ingredients less than or equal to the median, and `False` otherwise.<br>
+
+### Result ###
+The resulting `recipes` dataframe has 83782 rows and 21 columns, with following datatypes for each column:<br>
 
 | Column | Data Type |
 |--------|-----------|
@@ -59,11 +93,24 @@ To analyze the relationship between number of ingredients and rating, we need to
 | `description` | object |
 | `ingredients` | object |
 | `n_ingredients` | int64 |
-| `user_id` | float64 |
-| `recipe_id` | float64 |
-| `date` | object |
 | `rating` | float64 |
-| `review` | object |
+| `calories` | float64 |
+| `totalFat` | float64 |
+| `sugar` | float64 |
+| `sodium` | float64 |
+| `protein` | float64 |
+| `saturatedFat` | float64 |
+| `carbohydrates` | float64 |
+| `isFewIngredients` | bool |
+
+Here are the first 5 rows of cleaned `recipes` dataframe with question related columns:<br>
+| name                                 |     id |   rating |   minutes |   n_ingredients | isFewIngredients   |
+|:-------------------------------------|-------:|---------:|----------:|----------------:|:-------------------|
+| 1 brownies in the world    best ever | 333281 |        4 |        40 |               9 | True               |
+| 1 in canada chocolate chip cookies   | 453467 |        5 |        45 |              11 | False              |
+| 412 broccoli casserole               | 306168 |        5 |        40 |               9 | True               |
+| millionaire pound cake               | 286009 |        5 |       120 |               7 | True               |
+| 2000 meatloaf                        | 475785 |        5 |        90 |              13 | False              |
 
 ### Univariate data anlysis ###
 <iframe
