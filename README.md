@@ -12,6 +12,7 @@ One aspect of a recipe that may influence user perception is the number of ingre
 To investigate this question, we analyze two datasets containing recipes and user ratings collected from [Food.com](https://www.food.com) since 2008. These datasets were originally curated for recommender system research in [Generating Personalized Recipes from Historical User Preferences](https://cseweb.ucsd.edu/~jmcauley/pdfs/emnlp19c.pdf) by Majumder et al., and they provide rich information on recipe attributes and user feedback. Using this data, we examine the relationship between a recipe’s average rating and its number of ingredients to better understand how preparation complexity aligns with user satisfaction.<br>
 
 The first dataset, `Raw_recipes.csv`, contains 83782 rows and 10 columns, recording the following information: <br>
+
 | Column | Description |
 |-------|------------|
 | `name` | Recipe name |
@@ -26,6 +27,7 @@ The first dataset, `Raw_recipes.csv`, contains 83782 rows and 10 columns, record
 | `description` | User-provided description |
 
 The second dataset, ``Raw_interactions.csv`, contains 731927 rows and 5 columns, recording the following information: <br>
+
 | Column | Description |
 |--------|-------------|
 | `user_id` | User ID |
@@ -42,7 +44,7 @@ To analyze the relationship between number of ingredients and rating, we need to
 
 ### Univariate data anlysis ###
 <iframe
-  src="assets/n-ingredients-dist.html"
+  src="Assets/n-ingredients-dist.html"
   width="800"
   height="600"
   frameborder="0"
