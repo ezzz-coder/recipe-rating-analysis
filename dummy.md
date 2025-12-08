@@ -58,3 +58,7 @@ Recipes with fewer ingredients (1–15) show wider rating distributions with med
 |              37 | 5       |  5    |
 
 Mean ratings stay consistently high (mostly 4.6–4.9) regardless of ingredient count, though the very highest means appear at the upper end (≈28–33 ingredients). Minimum ratings increase for higher ingredient counts, indicating that simpler recipes show more variability and occasionally poorer outcomes.
+
+## Framing a Prediction Problem
+
+Our problem is to predict the average rating of a recipe, which would be a regression problem since the ratings are continuous in the range [1.0, 5.0]. The response variable is the average rating of a recipe, aggregated across all user interactions. We chose to predict rating because it directly measures user satisfaction and recipe quality, and it's interesting to see which features (e.g. number of ingredients, nutrition, etc.) would impact how well users like a recipe.
