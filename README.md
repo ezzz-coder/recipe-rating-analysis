@@ -177,7 +177,8 @@ In the cleaned dataset `recipes`, there are three columns with missing values: `
 ### NMAR Analysis ###
 The missingness in the `description` column is best characterized as Not Missing At Random (NMAR). A recipe description is optional and entirely user-provided, meaning whether a description is included depends on the contributor’s deliberate choice rather than on a value observed elsewhere in the dataset. For example, contributors may omit descriptions when they believe the recipe is self-explanatory already. <br>
 
-### Missingness Dependency
+### Missingness Dependency ###
+#### Minutes and Rating ####
 **Number of Minutes and Rating** <br>
 To further investigate the missingness mechanism of the rating column, we examined whether the probability of a missing rating depends on the recipe’s preparation time, measured by the minutes column.<br>
 
