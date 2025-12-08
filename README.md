@@ -216,3 +216,38 @@ We ran permutation by shuffling the the `minutes` column for 1000 times to colle
 The **observed statistic** of **117.342** is indicated by the red vertical dotted line in the graph. The **p_value** we found after performing the permutation test is **0.034**, which is smaller than the significant level of **0.05**. Therefore, we **reject the null hypothesis**. The missingness of ratings does depend on the number of minutes required to prepare the recipe.<br>
 
 
+#### Carbohydrates and Rating #### <br>
+We next examined whether the missingness of the rating column depends on the carbohydrate content of a recipe. Specifically, we tested if there is a systematic difference in carbohydrate values between recipes with observed ratings and those with missing ratings.<br>
+
+**Null Hypothesis:** <br>
+The missingness of ratings does not depend on the carbohydrate content of the recipe. <br>
+
+**Alternate Hypothesis:**
+The missingness of ratings does depend on the carbohydrate content of the recipe. <br>
+
+**Test Statistic:**
+We used the absolute difference between the mean carbohydrate content of recipes with observed ratings and the mean carbohydrate content of recipes with missing ratings. This statistic captures the magnitude of the difference between the two groups without regard to direction. <br>
+
+**Method:**
+A permutation test was conducted by randomly permuting the carbohydrates column while keeping the missingness pattern of the rating column unchanged. For each permutation, we recomputed the test statistic to construct an empirical null distribution. The p-value was calculated as the proportion of permutation statistics greater than or equal to the observed test statistic. <br>
+
+**Significance Level:** <br>
+We used a significance level of 0.05 to determine statistical significance. <br>
+
+<iframe
+  src="Assets/carb-dist.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+We ran permutation by shuffling the the `minutes` column for 1000 times to collect 1000 simulating absolute mean differences in the two distributions as described in the test statistic.
+
+<iframe
+  src="Assets/emp-dist2.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+The **observed statistic** of **0.351** is indicated by the red vertical dotted line in the graph. The **p_value** we found after performing the permutation test is **0.464**, which is much bigger than the significant level of **0.05**. Therefore, we **fail to reject the null hypothesis**. The missingness of ratings does not depend on the carbohydrates of the recipe.<br>
