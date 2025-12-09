@@ -303,6 +303,22 @@ The model is trained on 80% of the data with a 20% test split (random_state=42),
 
 ## Final Model ##
 
+For the final model, we used the features in the baseline model, along with 4 new features `steps_per_minute`, `has_dessert`, `has_healthy`, and `is_main_dish`.
+
+The following are the features in the baseline model and why we kept them. 
+* `calories`: Calorie content reflects recipe type and portion size. Users may prefer moderate-calorie recipes, and calories can signal healthiness, satiety, and recipe category, which likely influence satisfaction.
+* `protein`: Protein content is a common nutritional focus. Higher-protein recipes may appeal to health-conscious users.
+* `isLong`: Indicates recipes taking >200 minutes. Cooking time affects accessibility and expectations; longer recipes may attract users seeking complex dishes, while shorter ones appeal to those prioritizing convenience. This captures time-related preferences that likely influence ratings.
+These features are encoded similarly as in the baseline model.
+
+The following are the new feautures we added and why we added them.
+* `steps_per_minute` (quantitative): this feature is engineered by taking the number of steps and dividing it by the number of minutes of the recipe. it captures how intense or demanding a recipe feels. Two recipes may take the same amount of time, but one with many rapid-fire steps creates more cognitive load and feels more stressful or complex to follow. This perceived difficulty strongly influences user satisfaction and thus ratings.
+* `has_dessert`: this feature is extracted from tags. Desserts may have different rating patterns than savory dishes, so this captures category-specific effects.
+* `has_healthy` (nominal): this feature is extracted from tags. "Healthy" recipes may attract different expectations and rating behaviors, capturing health-oriented preferences.
+* `is_main_dish` (nominal): this feature is extracted from tags. Main dishes may differ from sides/appetizers in complexity, expectations, and rating patterns.
+
+The model we used is Lasso Regression, because the L1 regularization would help handle potential multicollinearity and reduce the risk of overfitting, which is needed since we are using more features. The quantitative features are transformed using `StandardScaler` and the nominal features are one-hot encoded with drop='first'. Using GridSearchCV with 10-fold cross-validation, the hyperparameters we tuned for is the regularization constant `alpha`, and the best came out to be 1e-14 (which is very low, and could mean that no regularization is needed). The RMSE on the test set came out to be 0.6296, which is indeed lower than our baseline model.
+
 ## Fairness Analysis ##
 For our fairness analysis, we examined whether our model performs differently for recipes with few ingredients versus those with many ingredients. We use the same column `isFewIngredients` as in previous sections.<br>
 
