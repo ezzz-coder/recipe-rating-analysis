@@ -313,7 +313,7 @@ These features are encoded similarly as in the baseline model.
 
 The following are the new feautures we added and why we added them.
 * `steps_per_minute` (quantitative): this feature is engineered by taking the number of steps and dividing it by the number of minutes of the recipe. it captures how intense or demanding a recipe feels. Two recipes may take the same amount of time, but one with many rapid-fire steps creates more cognitive load and feels more stressful or complex to follow. This perceived difficulty strongly influences user satisfaction and thus ratings.
-* `has_dessert`: this feature is extracted from tags. This feature identifies desserts, and desserts may have different rating patterns than savory dishes, so this captures category-specific effects.
+* `has_dessert` (nominal): this feature is extracted from tags. This feature identifies desserts, and desserts may have different rating patterns than savory dishes, so this captures category-specific effects.
 * `has_healthy` (nominal): this feature is extracted from tags. "Healthy" recipes may attract different expectations and rating behaviors, capturing health-oriented preferences.
 * `is_main_dish` (nominal): this feature is extracted from tags. Main dishes may differ from sides/appetizers in complexity, expectations, and rating patterns, and these category-specific rating patterns are not fully captured by nutritional information or cooking time alone, which is why this feature may be helpful.
 
